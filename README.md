@@ -333,61 +333,13 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
 
   <!-- ===================== DİĞER BÖLÜMLER ===================== -->
   <div id="p-diger" class="panel">
-    <!-- Vize/Final -->
+
+    <!-- 1. DERSLER & ORTALAMA (en üstte) -->
     <div class="card">
-      <div class="sl">Ağırlıklı Ortalama</div>
-      <div class="r2">
-        <div class="f"><label>Vize Notu</label><input type="number" id="vize" placeholder="0–100" min="0" max="100" oninput="hvize()"></div>
-        <div class="f"><label>Vize Ağırlık (%)</label><input type="number" id="va" value="40" min="0" max="100" oninput="kA('va','fa','wv');hvize()"></div>
-      </div>
-      <div class="r2">
-        <div class="f"><label>Final Notu</label><input type="number" id="final" placeholder="0–100" min="0" max="100" oninput="hvize()"></div>
-        <div class="f"><label>Final Ağırlık (%)</label><input type="number" id="fa" value="60" min="0" max="100" oninput="kA('fa','va','wv');hvize()"></div>
-      </div>
-      <div class="warn" id="wv">⚠️ Toplam 100'ü geçemez — otomatik düzeltildi.</div>
-      <div class="rb" id="rv"><div class="rl">Dönem Ortalaması</div><div class="rn" style="color:var(--tx2)">—</div><div class="rd">notları gir</div></div>
-      <div class="motiv" id="motiv"><span style="font-size:1.5rem">🎉</span><span style="font-size:12px;font-weight:700;color:var(--a1)" id="mtext"></span></div>
-      <div class="dv"></div>
-      <div class="itr" id="itr" onclick="toggleI()"><div class="itp"></div><span class="itext">🎯 Geçmek için kaç lazım?</span></div>
-      <div class="ip" id="ip">
-        <div class="r2" style="margin-top:10px">
-          <div class="f"><label>Hedef Ortalama</label><input type="number" id="gh" value="60" min="0" max="100" oninput="hgec()"></div>
-          <div class="f"><label>Geçme Notu</label><select id="gss" onchange="hgec()"><option value="60">60</option><option value="50">50</option><option value="45">45</option></select></div>
-        </div>
-        <div class="rb" id="rg"><div class="rl">Finalden Alman Gereken</div><div class="rn" style="color:var(--tx2)">—</div><div class="rd">vize notunu gir</div></div>
-      </div>
-      <div class="dv"></div>
-      <div class="itr" id="itr2" onclick="toggleBut()"><div class="itp"></div><span class="itext">🔄 Bütünleme hesaplayıcı</span></div>
-      <div class="ip" id="ip2">
-        <div class="r2" style="margin-top:10px">
-          <div class="f"><label>Dönem Sonu Ortalamanız</label><input type="number" id="bt-ort" placeholder="örn: 45" min="0" max="100" oninput="hBut()"></div>
-          <div class="f"><label>Bütünleme Ağırlığı (%)</label><input type="number" id="bt-agir" value="100" min="0" max="100" oninput="hBut()"></div>
-        </div>
-        <div class="r2">
-          <div class="f"><label>Dönem Ağırlığı (%)</label><input type="number" id="bt-dagir" value="0" min="0" max="100" oninput="hBut()"></div>
-          <div class="f"><label>Geçme Notu</label><select id="bt-gec" onchange="hBut()"><option value="60">60</option><option value="50">50</option><option value="45">45</option></select></div>
-        </div>
-        <div class="rb" id="rb2"><div class="rl">Bütünlemeden Alman Gereken</div><div class="rn" style="color:var(--tx2)">—</div><div class="rd">dönem ortalamanı gir</div></div>
-      </div>
-    </div>
-    <!-- GNO -->
-    <div class="card">
-      <div class="sl">Dönem Geçmişi & Grafik</div>
-      <div id="dlist"><div class="empty">Henüz dönem eklenmedi 📅</div></div>
-      <div class="chart-w" id="cwrap" style="display:none"><canvas id="gnoCh"></canvas></div>
-      <div class="dv"></div>
-      <div class="sl">Yeni Dönem Ekle</div>
-      <div class="r2">
-        <div class="f"><label>Dönem Adı</label><input type="text" id="ddad" placeholder="2024-Güz"></div>
-        <div class="f"><label>Ort. (100'lük)</label><input type="number" id="ddgno" placeholder="75" min="0" max="100"></div>
-      </div>
-      <button class="btnf" onclick="donemEkle()">+ Dönem Ekle</button>
-    </div>
-    <div class="card">
-      <div class="sl">Bu Dönem — Ders GNO</div>
+      <div class="sl">📚 Dersler</div>
       <div class="r3">
         <div class="f"><label>Ders Adı</label><input type="text" id="di" placeholder="Matematik"></div>
-        <div class="f"><label>Not</label><input type="number" id="dn2" placeholder="85" min="0" max="100"></div>
+        <div class="f"><label>Not (0–100)</label><input type="number" id="dn2" placeholder="85" min="0" max="100"></div>
         <div class="f"><label>Kredi</label><input type="number" id="dk" placeholder="3" value="3" min="1" max="10"></div>
       </div>
       <button class="btnf" onclick="dersEkle()">+ Ders Ekle</button>
@@ -400,6 +352,35 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
         </div>
       </div>
     </div>
+
+    <!-- 3. BÜTÜNLEME -->
+    <div class="card">
+      <div class="sl">🔄 Bütünleme Hesaplayıcı</div>
+      <div class="r2">
+        <div class="f"><label>Dönem Sonu Ortalamanız</label><input type="number" id="bt-ort" placeholder="örn: 45" min="0" max="100" oninput="hBut()"></div>
+        <div class="f"><label>Bütünleme Ağırlığı (%)</label><input type="number" id="bt-agir" value="100" min="0" max="100" oninput="hBut()"></div>
+      </div>
+      <div class="r2">
+        <div class="f"><label>Dönem Ağırlığı (%)</label><input type="number" id="bt-dagir" value="0" min="0" max="100" oninput="hBut()"></div>
+        <div class="f"><label>Geçme Notu</label><select id="bt-gec" onchange="hBut()"><option value="60">60</option><option value="50">50</option><option value="45">45</option></select></div>
+      </div>
+      <div class="rb" id="rb2"><div class="rl">Bütünlemeden Alman Gereken</div><div class="rn" style="color:var(--tx2)">—</div><div class="rd">dönem ortalamanı gir</div></div>
+    </div>
+
+    <!-- 4. DÖNEM GEÇMİŞİ & GRAFİK -->
+    <div class="card">
+      <div class="sl">📅 Dönem Geçmişi & Grafik</div>
+      <div id="dlist"><div class="empty">Henüz dönem eklenmedi 📅</div></div>
+      <div class="chart-w" id="cwrap" style="display:none"><canvas id="gnoCh"></canvas></div>
+      <div class="dv"></div>
+      <div class="r2">
+        <div class="f"><label>Dönem Adı</label><input type="text" id="ddad" placeholder="2024-Güz"></div>
+        <div class="f"><label>Ort. (100'lük)</label><input type="number" id="ddgno" placeholder="75" min="0" max="100"></div>
+      </div>
+      <button class="btnf" onclick="donemEkle()">+ Dönem Ekle</button>
+    </div>
+
+    <!-- 5. HEDEF GNO -->
     <div class="card">
       <div class="sl">🎯 Hedef GNO</div>
       <div class="r2">
@@ -414,12 +395,13 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
         </div>
       </div>
     </div>
-    <!-- Rozetler -->
+
+    <!-- 6. ROZETLER -->
     <div class="card">
       <div class="sl">🏅 Başarım Rozetleri</div>
-      <div class="roz-grid" id="rozet-grid"></div>
-      <div class="empty" id="rozet-empty" style="display:none">Henüz rozet yok — not eklemeye başla! 🎯</div>
+      <div id="rozet-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px"></div>
     </div>
+
   </div>
 
   <!-- ===================== POMODORO ===================== -->
@@ -643,25 +625,26 @@ function upPratik(){const el=document.getElementById('psub');if(el)el.textConten
 
 // ====== VİZE/FİNAL ======
 function hvize(){
-  const v=parseFloat(document.getElementById('vize').value);const f=parseFloat(document.getElementById('final').value);
-  const va=parseFloat(document.getElementById('va').value)/100;const fa=parseFloat(document.getElementById('fa').value)/100;
-  if(isNaN(v)||isNaN(f))return;
-  const ort=v*va+f*fa;const hr=harf(ort);const box=document.getElementById('rv');
-  box.querySelector('.rn').textContent=ort.toFixed(1);box.querySelector('.rn').style.color=nc(ort);
-  box.querySelector('.rd').innerHTML=`Harf: <b style="color:${hr.c}">${hr.h}</b> · GNO: <b>${hr.p}</b>`;
-  box.classList.add('on');showMot(ort);hgec();
+  // Artık sadece hgec'i tetikle, rv yok
+  hgec();
 }
 let iOn=false;
-function toggleI(){iOn=!iOn;document.getElementById('itr').classList.toggle('iton',iOn);document.getElementById('ip').classList.toggle('show',iOn);if(iOn)hgec();}
+function toggleI(){} // artık kullanılmıyor
 function hgec(){
-  const v=parseFloat(document.getElementById('vize').value);const va=parseFloat(document.getElementById('va').value)/100;const fa=parseFloat(document.getElementById('fa').value)/100;const h=parseFloat(document.getElementById('gh').value)||60;
-  if(isNaN(v)||fa===0)return;const g=(h-v*va)/fa;const box=document.getElementById('rg');box.classList.add('on');
+  const v=parseFloat(document.getElementById('vize').value);
+  const va=parseFloat(document.getElementById('va').value)/100;
+  const fa=parseFloat(document.getElementById('fa').value)/100;
+  const gec=parseFloat(document.getElementById('gss').value)||60;
+  const box=document.getElementById('rg');
+  if(isNaN(v)||fa===0)return;
+  const g=(gec-v*va)/fa;
+  box.classList.add('on');
   if(g<=0){box.querySelector('.rn').textContent='✓';box.querySelector('.rn').style.color='var(--grn)';box.querySelector('.rd').textContent='Vize notunla zaten geçiyorsun!';}
   else if(g>100){box.querySelector('.rn').textContent='✗';box.querySelector('.rn').style.color='var(--red)';box.querySelector('.rd').textContent='100\'den fazla gerekiyor!';}
   else{const hr=harf(g);box.querySelector('.rn').textContent=g.toFixed(1);box.querySelector('.rn').style.color=nc(g);box.querySelector('.rd').innerHTML=`Bu notu alırsan: <b style="color:${hr.c}">${hr.h}</b>`;}
 }
 let butOn=false;
-function toggleBut(){butOn=!butOn;document.getElementById('itr2').classList.toggle('iton',butOn);document.getElementById('ip2').classList.toggle('show',butOn);if(butOn)hBut();}
+function toggleBut(){} // artık kullanılmıyor
 function hBut(){
   const ort=parseFloat(document.getElementById('bt-ort').value);const ba=parseFloat(document.getElementById('bt-agir').value)/100;const da=parseFloat(document.getElementById('bt-dagir').value)/100;const gec=parseFloat(document.getElementById('bt-gec').value);
   if(isNaN(ort))return;const ger=(gec-ort*da)/ba;const box=document.getElementById('rb2');box.classList.add('on');
@@ -874,10 +857,43 @@ function rozToast(roz){
   playSuccess();konfeti();setTimeout(()=>{t.style.transform='translateX(-50%) translateY(-80px)';setTimeout(()=>t.remove(),500);},3000);
 }
 function renderRozetler(){
-  const grid=document.getElementById('rozet-grid');const empty=document.getElementById('rozet-empty');if(!grid)return;
-  const kazanilan=ROZETLER.filter(r=>kazanilanRozetler.includes(r.id));const kilitli=ROZETLER.filter(r=>!kazanilanRozetler.includes(r.id));
-  grid.innerHTML=[...kazanilan,...kilitli].map(r=>{const u=kazanilanRozetler.includes(r.id);return `<div class="roz-box ${u?'unlocked':'locked'}" title="${r.isim}"><div class="roz-emoji">${r.emoji}</div><div class="roz-isim">${r.isim}</div></div>`;}).join('');
-  empty.style.display=kazanilan.length===0?'block':'none';
+  const grid=document.getElementById('rozet-grid');
+  if(!grid)return;
+  grid.style.display='grid';
+  grid.style.gridTemplateColumns='repeat(3,1fr)';
+  grid.style.gap='10px';
+  grid.innerHTML=ROZETLER.map(r=>{
+    const u=kazanilanRozetler.includes(r.id);
+    const bg=u?'rgba(255,255,255,.6)':'rgba(255,255,255,.1)';
+    const border=u?'rgba(255,210,0,.6)':'rgba(255,255,255,.15)';
+    const emojiOp=u?'1':'.3';
+    const textColor=u?'#5a5a7a':'rgba(255,255,255,.35)';
+    return `<div onclick="rozAciklama('${r.id}')" style="background:${bg};border:1.5px solid ${border};border-radius:14px;padding:14px 8px;text-align:center;position:relative;cursor:pointer;">
+      <div style="font-size:1.8rem;line-height:1;margin-bottom:6px;opacity:${emojiOp}">${r.emoji}</div>
+      <div style="font-size:9px;font-weight:800;color:${textColor};letter-spacing:.3px;line-height:1.3">${r.isim}</div>
+      ${u?'<div style="position:absolute;top:-5px;right:-5px;background:linear-gradient(135deg,#f5a623,#ffd200);color:white;font-size:8px;font-weight:800;padding:2px 6px;border-radius:99px">✓</div>':''}
+    </div>`;
+  }).join('');
+}
+
+function rozAciklama(id){
+  const r=ROZETLER.find(r=>r.id===id);if(!r)return;
+  const u=kazanilanRozetler.includes(id);
+  const eski=document.getElementById('roz-popup');if(eski)eski.remove();
+  const popup=document.createElement('div');
+  popup.id='roz-popup';
+  popup.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;';
+  popup.innerHTML=`<div style="background:rgba(255,255,255,.96);border-radius:24px;padding:28px 24px;max-width:300px;width:100%;text-align:center;animation:fU .25s ease both;box-shadow:0 20px 60px rgba(0,0,0,.2)">
+    <div style="font-size:3.5rem;margin-bottom:10px;${u?'':'filter:grayscale(1);opacity:.4'}">${r.emoji}</div>
+    <div style="font-size:1rem;font-weight:900;margin-bottom:8px;color:var(--tx)">${r.isim}</div>
+    <div style="font-size:12px;color:var(--tx2);font-weight:600;margin-bottom:16px;line-height:1.6;background:rgba(0,0,0,.04);border-radius:12px;padding:10px 14px">${r.aciklama}</div>
+    <div style="font-size:12px;font-weight:800;padding:8px 16px;border-radius:99px;display:inline-block;margin-bottom:14px;${u?'background:rgba(48,201,142,.15);color:#30c98e':'background:rgba(91,140,255,.1);color:var(--a1)'}">
+      ${u?'✅ Kazanıldı!':'🔒 Henüz kazanılmadı'}
+    </div><br>
+    <button onclick="document.getElementById('roz-popup').remove()" style="border:none;background:rgba(0,0,0,.07);border-radius:99px;padding:8px 22px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;color:var(--tx)">Kapat</button>
+  </div>`;
+  popup.addEventListener('click',e=>{if(e.target===popup)popup.remove();});
+  document.body.appendChild(popup);
 }
 
 // ====== PAYLAŞIM KARTI ======
