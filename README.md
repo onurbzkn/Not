@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -240,17 +240,6 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
 </div>
 
 <!-- PRATIK MODAL -->
-<div class="overlay" id="modal">
-  <div class="sheet">
-    <div class="shp"></div>
-    <div class="sht">🏥 Pratik Sınav Var Mı?</div>
-    <div class="shs">Komite sınavlarında ayrı bir <b>pratik sınav</b> yapılıyor mu?</div>
-    <div class="shb">
-      <button class="shbtn no" onclick="pratikC(false)">Hayır, sadece teorik</button>
-      <button class="shbtn yes" onclick="pratikC(true)">Evet, pratik de var ✓</button>
-    </div>
-  </div>
-</div>
 
 <div class="w">
   <!-- HEADER -->
@@ -399,7 +388,7 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
     <!-- 6. ROZETLER -->
     <div class="card">
       <div class="sl">🏅 Başarım Rozetleri</div>
-      <div id="rozet-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px"></div>
+      <div id="rozet-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px;min-height:10px"></div>
     </div>
 
   </div>
@@ -553,9 +542,9 @@ window.onload=()=>{
     const sv=localStorage.getItem('pratikVar');
     if(sv!==null){
       pratikVar=sv==='true';
-      const modal=document.getElementById('modal');
+      
       const pratt=document.getElementById('pratt');
-      if(modal)modal.style.display='none';
+      
       if(pratt)pratt.checked=pratikVar;
       upPratik();
     }
@@ -573,6 +562,7 @@ function sw(id,btn){
   document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
   document.getElementById('p-'+id).classList.add('on');
   btn.classList.add('on');
+  if(id==='diger') renderRozetler();
 }
 function goProfile(){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
@@ -619,7 +609,7 @@ function showMot(n){
 }
 
 // ====== PRATİK MODAL ======
-function pratikC(v){pratikVar=v;localStorage.setItem('pratikVar',v);document.getElementById('modal').style.display='none';document.getElementById('pratt').checked=v;upPratik();renderKomiteler();}
+function pratikC(v){pratikVar=v;localStorage.setItem('pratikVar',v);document.getElementById('pratt').checked=v;upPratik();renderKomiteler();}
 function pratikT(){pratikVar=document.getElementById('pratt').checked;localStorage.setItem('pratikVar',pratikVar);upPratik();renderKomiteler();}
 function upPratik(){const el=document.getElementById('psub');if(el)el.textContent=pratikVar?'Pratik sınav aktif ✓':'Sadece teorik sınav';}
 
@@ -828,21 +818,21 @@ function pomYukle(){const d=localStorage.getItem('pomData');if(!d)return;const o
 
 // ====== ROZETLER ======
 const ROZETLER=[
-  {id:'ilk_ders',emoji:'📝',isim:'İlk Ders',kontrol:()=>dersler.length>=1},
-  {id:'bes_ders',emoji:'📚',isim:'5 Ders',kontrol:()=>dersler.length>=5},
-  {id:'on_ders',emoji:'🎒',isim:'10 Ders',kontrol:()=>dersler.length>=10},
-  {id:'ilk_komite',emoji:'🏥',isim:'İlk Komite',kontrol:()=>komiteler.length>=1},
-  {id:'komite_5',emoji:'💉',isim:'5 Komite',kontrol:()=>komiteler.length>=5},
-  {id:'gec_60',emoji:'✅',isim:'Geçer Not',kontrol:()=>dersler.some(d=>d.n>=60)},
-  {id:'gec_80',emoji:'⭐',isim:'Yıldız Öğr.',kontrol:()=>dersler.some(d=>d.n>=80)},
-  {id:'gec_90',emoji:'🏆',isim:'Şampiyon',kontrol:()=>dersler.some(d=>d.n>=90)},
-  {id:'gno_3',emoji:'🎓',isim:'3.0 GNO',kontrol:()=>{if(!dersler.length)return false;let tp=0,tk=0;dersler.forEach(d=>{const hr=harf(d.n);tp+=hr.p*d.k;tk+=d.k;});return(tp/tk)>=3.0;}},
-  {id:'gno_35',emoji:'🌟',isim:'3.5 GNO',kontrol:()=>{if(!dersler.length)return false;let tp=0,tk=0;dersler.forEach(d=>{const hr=harf(d.n);tp+=hr.p*d.k;tk+=d.k;});return(tp/tk)>=3.5;}},
-  {id:'donem_2',emoji:'📅',isim:'2. Dönem',kontrol:()=>donemler.length>=2},
-  {id:'sinav_5',emoji:'🗓️',isim:'Planlayıcı',kontrol:()=>sinavlar.length>=5},
-  {id:'staj_ilk',emoji:'🩺',isim:'Stajyer',kontrol:()=>stajlar.length>=1},
-  {id:'komite_gec_5',emoji:'💪',isim:'Komite Savaşçısı',kontrol:()=>komiteler.filter(k=>{const n=kNotu(k);return !isNaN(n)&&n>=60;}).length>=5},
-  {id:'pom_10',emoji:'🍅',isim:'Odak Ustası',kontrol:()=>pom.tamamlanan>=10},
+  {id:'ilk_ders',    emoji:'📝', isim:'İlk Ders',         aciklama:'İlk dersini ekle',                              kontrol:()=>dersler.length>=1},
+  {id:'bes_ders',    emoji:'📚', isim:'5 Ders',            aciklama:'Toplamda 5 ders ekle',                          kontrol:()=>dersler.length>=5},
+  {id:'on_ders',     emoji:'🎒', isim:'10 Ders',           aciklama:'Toplamda 10 ders ekle',                         kontrol:()=>dersler.length>=10},
+  {id:'ilk_komite',  emoji:'🏥', isim:'İlk Komite',        aciklama:'İlk komiteni ekle',                             kontrol:()=>komiteler.length>=1},
+  {id:'komite_5',    emoji:'💉', isim:'5 Komite',          aciklama:'Toplamda 5 komite ekle',                        kontrol:()=>komiteler.length>=5},
+  {id:'gec_60',      emoji:'✅', isim:'Geçer Not',         aciklama:'Herhangi bir dersten 60 veya üzeri al',          kontrol:()=>dersler.some(d=>d.n>=60)},
+  {id:'gec_80',      emoji:'⭐', isim:'Yıldız Öğr.',      aciklama:'Herhangi bir dersten 80 veya üzeri al',          kontrol:()=>dersler.some(d=>d.n>=80)},
+  {id:'gec_90',      emoji:'🏆', isim:'Şampiyon',          aciklama:'Herhangi bir dersten 90 veya üzeri al',          kontrol:()=>dersler.some(d=>d.n>=90)},
+  {id:'gno_3',       emoji:'🎓', isim:'3.0 GNO',           aciklama:'Dönem GNO ortalamanı 3.0\'a ulaştır',           kontrol:()=>{if(!dersler.length)return false;let tp=0,tk=0;dersler.forEach(d=>{const hr=harf(d.n);tp+=hr.p*d.k;tk+=d.k;});return(tp/tk)>=3.0;}},
+  {id:'gno_35',      emoji:'🌟', isim:'3.5 GNO',           aciklama:'Dönem GNO ortalamanı 3.5\'e ulaştır',           kontrol:()=>{if(!dersler.length)return false;let tp=0,tk=0;dersler.forEach(d=>{const hr=harf(d.n);tp+=hr.p*d.k;tk+=d.k;});return(tp/tk)>=3.5;}},
+  {id:'donem_2',     emoji:'📅', isim:'2. Dönem',          aciklama:'Dönem geçmişine 2 dönem ekle',                  kontrol:()=>donemler.length>=2},
+  {id:'sinav_5',     emoji:'🗓️',isim:'Planlayıcı',        aciklama:'Sınav takvimine 5 sınav ekle',                  kontrol:()=>sinavlar.length>=5},
+  {id:'staj_ilk',    emoji:'🩺', isim:'Stajyer',           aciklama:'İlk stajını ekle (4-5-6. sınıf)',               kontrol:()=>stajlar.length>=1},
+  {id:'komite_gec_5',emoji:'💪', isim:'Komite Savaşçısı', aciklama:'5 komiteden 60 ve üzeri alarak geç',            kontrol:()=>komiteler.filter(k=>{const n=kNotu(k);return !isNaN(n)&&n>=60;}).length>=5},
+  {id:'pom_10',      emoji:'🍅', isim:'Odak Ustası',       aciklama:'Pomodoro sekmesinde 10 odak seansı tamamla',    kontrol:()=>pomState&&pomState.tamamlanan>=10},
 ];
 function kontrolRozetler(){
   const yeni=[];ROZETLER.forEach(r=>{if(r.kontrol()&&!kazanilanRozetler.includes(r.id)){kazanilanRozetler.push(r.id);yeni.push(r);}});
@@ -930,15 +920,21 @@ function importData(input){
 // ====== AYARLAR ======
 function tDark(){document.body.classList.toggle('dark',document.getElementById('darkt').checked);if(gnoCh)renderGC();saveS();}
 function toggleCol(){const p=document.getElementById('copts');p.style.display=p.style.display==='none'?'flex':'none';}
-function rSec(isim,el,c1,c2){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');document.documentElement.style.setProperty('--a1',c1);document.documentElement.style.setProperty('--a2',c2);document.getElementById('rsub').textContent=isim;localStorage.setItem('renk',JSON.stringify({isim,c1,c2}));}
+function rSec(isim,el,c1,c2){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');document.documentElement.style.setProperty('--a1',c1);document.documentElement.style.setProperty('--a2',c2);const rsub=document.getElementById('rsub');if(rsub)rsub.textContent=isim;localStorage.setItem('renk',JSON.stringify({isim,c1,c2}));}
 function tByt(){document.body.style.fontSize=document.getElementById('bytt').checked?'17px':'';saveS();}
 function pGun(){
-  const isim=document.getElementById('pisim').value||'Tıp Öğrencisi';
-  const uni=document.getElementById('puni').value||'Üniversite seçilmedi';
-  const sinif=document.getElementById('psinif').value;
-  document.getElementById('avisim').textContent=isim+(sinif?' · '+sinif:'');
-  document.getElementById('avuni').textContent=uni;
-  document.getElementById('hsub').textContent=sinif?`${sinif} · Tıp · GNO · Pomodoro`:'Tıp · GNO · Pomodoro';
+  const pisim=document.getElementById('pisim');
+  const puni=document.getElementById('puni');
+  const psinif=document.getElementById('psinif');
+  const isim=(pisim&&pisim.value)||'Tıp Öğrencisi';
+  const uni=(puni&&puni.value)||'Üniversite seçilmedi';
+  const sinif=(psinif&&psinif.value)||'';
+  const avisim=document.getElementById('avisim');
+  const avuni=document.getElementById('avuni');
+  const hsub=document.getElementById('hsub');
+  if(avisim)avisim.textContent=isim+(sinif?' · '+sinif:'');
+  if(avuni)avuni.textContent=uni;
+  if(hsub)hsub.textContent=sinif?`${sinif} · Tıp · GNO · Pomodoro`:'Tıp · GNO · Pomodoro';
   const ustSinif=['4. Sınıf','5. Sınıf','6. Sınıf'].includes(sinif);
   const stajCard=document.getElementById('staj-card');
   const komiteMainCard=document.getElementById('komite-main-card');
