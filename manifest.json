@@ -1,16 +1,24 @@
 {
-  "background_color": "#e8f0ff",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "Not Hesaplayıcı",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "NotApp",
-  "start_url": "/",
-  "theme_color": "#5b8cff",
   "description": "Tıp öğrencileri için not takip uygulaması",
-  "categories": [
-    "education",
-    "medical"
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e8f0fe",
+  "theme_color": "#5b8cff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
