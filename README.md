@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>Not</title>
+<title>Not Hesaplayıcı</title>
+<meta name="theme-color" content="#5b8cff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NotApp">
+<link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -215,12 +220,40 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f0fe 0
 @keyframes pI{from{opacity:0;transform:translateY(9px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 /* DARK */
 body.dark{background:linear-gradient(160deg,#0d1117 0%,#10121a 50%,#12101a 100%);}
-body.dark .f input,body.dark .f select,body.dark .kw input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#e8e8f8;}
-body.dark .card{background:rgba(255,255,255,.06);}
-body.dark .sitem{background:rgba(255,255,255,.07);}
+body.dark .f input,body.dark .f select,body.dark .kw input{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#f0f0ff;}
+body.dark .f label,body.dark .kw label{color:rgba(255,255,255,.6);}
+body.dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);}
+body.dark .sitem{background:rgba(255,255,255,.08);}
 body.dark .sheet{background:rgba(22,22,40,.96);}
 body.dark .shbtn.no{background:rgba(255,255,255,.1);color:#e8e8f8;}
-body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
+body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.15);}
+body.dark .sl{color:rgba(255,255,255,.5);}
+body.dark .rb{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);}
+body.dark .sb{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1);}
+body.dark .sbl{color:rgba(255,255,255,.45);}
+body.dark .di{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);}
+body.dark .ki{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);}
+body.dark .di2{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);}
+body.dark .si2{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);}
+body.dark .pom-stat{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1);}
+body.dark .pom-log-item{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1);}
+body.dark .itp{background:rgba(255,255,255,.15);}
+body.dark .itext{color:rgba(255,255,255,.6);}
+body.dark .rl{color:rgba(255,255,255,.5);}
+body.dark .rd{color:rgba(255,255,255,.5);}
+body.dark .empty{color:rgba(255,255,255,.4);}
+body.dark .dn,.dark .kn,.dark .pom-log-name{color:#f0f0ff;}
+body.dark .dm,.dark .pom-log-meta{color:rgba(255,255,255,.45);}
+body.dark #hdr-isim{color:#f0f0ff;}
+body.dark #hdr-uni{color:rgba(255,255,255,.5);}
+body.dark .trl .tt{color:#f0f0ff;}
+body.dark .trl .ts{color:rgba(255,255,255,.45);}
+body.dark .sit .ti{color:#f0f0ff;}
+body.dark .sit .su{color:rgba(255,255,255,.45);}
+body.dark .sval{color:rgba(255,255,255,.5);}
+body.dark .tr{border-color:rgba(255,255,255,.06);}
+body.dark .dv{background:rgba(255,255,255,.08);}
+body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.35);}
 </style>
 </head>
 <body>
@@ -244,14 +277,16 @@ body.dark .tbi{background:rgba(18,18,36,.88);border-color:rgba(255,255,255,.1);}
 <div class="w">
   <!-- HEADER -->
   <div class="hdr">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div>
-        <div class="chip">✦ NotHesap</div>
-        <h1><span>Not</span></h1>
-        <p class="hdr-sub" id="hsub">Tıp · GNO · Pomodoro</p>
-      </div>
-      <div id="hdr-av" onclick="goProfile()" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;margin-top:54px;cursor:pointer;overflow:hidden;border:2.5px solid rgba(255,255,255,.8);box-shadow:0 4px 14px rgba(91,140,255,.28);">
-        <span id="hdr-av-inner">🎓</span>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h1 style="font-size:2.4rem"><span>Not</span></h1>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="text-align:right">
+          <div id="hdr-isim" style="font-size:13px;font-weight:900;color:var(--tx);letter-spacing:-.3px">Tıp Öğrencisi</div>
+          <div id="hdr-uni" style="font-size:10px;font-weight:600;color:var(--tx2);margin-top:1px">Üniversite seçilmedi</div>
+        </div>
+        <div id="hdr-av" onclick="goProfile()" style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;cursor:pointer;overflow:hidden;border:2.5px solid rgba(255,255,255,.8);box-shadow:0 4px 14px rgba(91,140,255,.28);">
+          <span id="hdr-av-inner">🎓</span>
+        </div>
       </div>
     </div>
   </div>
@@ -921,7 +956,12 @@ function importData(input){
 function tDark(){document.body.classList.toggle('dark',document.getElementById('darkt').checked);if(gnoCh)renderGC();saveS();}
 function toggleCol(){const p=document.getElementById('copts');p.style.display=p.style.display==='none'?'flex':'none';}
 function rSec(isim,el,c1,c2){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');document.documentElement.style.setProperty('--a1',c1);document.documentElement.style.setProperty('--a2',c2);const rsub=document.getElementById('rsub');if(rsub)rsub.textContent=isim;localStorage.setItem('renk',JSON.stringify({isim,c1,c2}));}
-function tByt(){document.body.style.fontSize=document.getElementById('bytt').checked?'17px':'';saveS();}
+function tByt(){
+  const on=document.getElementById('bytt').checked;
+  document.body.style.fontSize=on?'17px':'';
+  document.body.style.lineHeight=on?'1.6':'';
+  saveS();
+}
 function pGun(){
   const pisim=document.getElementById('pisim');
   const puni=document.getElementById('puni');
@@ -934,7 +974,12 @@ function pGun(){
   const hsub=document.getElementById('hsub');
   if(avisim)avisim.textContent=isim+(sinif?' · '+sinif:'');
   if(avuni)avuni.textContent=uni;
-  if(hsub)hsub.textContent=sinif?`${sinif} · Tıp · GNO · Pomodoro`:'Tıp · GNO · Pomodoro';
+  // Header'ı güncelle
+  const hdrIsim=document.getElementById('hdr-isim');
+  const hdrUni=document.getElementById('hdr-uni');
+  if(hdrIsim)hdrIsim.textContent=isim+(sinif?' · '+sinif:'');
+  if(hdrUni)hdrUni.textContent=uni;
+  
   const ustSinif=['4. Sınıf','5. Sınıf','6. Sınıf'].includes(sinif);
   const stajCard=document.getElementById('staj-card');
   const komiteMainCard=document.getElementById('komite-main-card');
@@ -956,9 +1001,12 @@ function goProfile(){
 function checkAD(){
   const el=document.getElementById('autod');
   if(!el||!el.checked)return;
-  const h=new Date().getHours();const sd=h>=22||h<7;
+  const h=new Date().getHours();
+  const sd=h>=22||h<7;
   document.body.classList.toggle('dark',sd);
-  const darkt=document.getElementById('darkt');if(darkt)darkt.checked=sd;
+  const darkt=document.getElementById('darkt');
+  if(darkt)darkt.checked=sd;
+  if(gnoCh)renderGC();
 }
 function saveS(){
   const darkt=document.getElementById('darkt');
@@ -966,6 +1014,7 @@ function saveS(){
   const autod=document.getElementById('autod');
   const motivt=document.getElementById('motivt');
   localStorage.setItem('settings',JSON.stringify({dark:darkt?.checked,byt:bytt?.checked,autoDark:autod?.checked,motiv:motivt?.checked}));
+  checkAD();
 }
 function saveAll(){localStorage.setItem('data',JSON.stringify({dersler,donemler,komiteler,sinavlar,stajlar}));}
 function reset(){if(confirm('Tüm veriler silinecek!')){dersler=[];donemler=[];komiteler=[];sinavlar=[];stajlar=[];kazanilanRozetler=[];saveAll();renderDersler();renderDonemler();renderKomiteler();renderS();renderStaj();renderRozetler();}}
@@ -1015,6 +1064,15 @@ function loadAll(){
     if(roz)kazanilanRozetler=JSON.parse(roz);
     renderDersler();renderDonemler();renderKomiteler();renderS();renderStaj();renderRozetler();
   }catch(e){console.warn('loadAll hatası:',e);}
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log('SW kayıtlı:', reg.scope))
+      .catch(err => console.warn('SW hatası:', err));
+  });
 }
 </script>
 </body>
