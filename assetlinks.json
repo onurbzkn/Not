@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.netlify.exquisite_pudding_d8541d.twa",
+    "sha256_cert_fingerprints": ["74:DC:F1:6D:90:56:EE:DE:54:66:46:29:7A:13:52:CB:82:13:5B:64:83:4C:AD:C6:4B:E7:94:35:F4:A7:2F:5A"]
+  }
+}]
