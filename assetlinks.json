@@ -1,8 +1,8 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "app.netlify.exquisite_pudding_d8541d.twa",
-    "sha256_cert_fingerprints": ["74:DC:F1:6D:90:56:EE:DE:54:66:46:29:7A:13:52:CB:82:13:5B:64:83:4C:AD:C6:4B:E7:94:35:F4:A7:2F:5A"]
-  }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.onurbzkn.twa",
+        "sha256_cert_fingerprints": ["63:DA:06:3F:64:0E:88:5E:EC:49:C3:08:82:A6:20:B8:9F:53:B4:76:14:13:6A:9A:8A:BE:91:EC:03:99:FE:02"]
+      }
+    }]
