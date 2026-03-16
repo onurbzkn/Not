@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -357,7 +357,7 @@ body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.3
       <h1 style="font-size:2.4rem"><span>Notus</span></h1>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="text-align:right">
-          <div id="hdr-isim" style="font-size:13px;font-weight:900;color:var(--tx);letter-spacing:-.3px">Tıp Öğrencisi</div>
+          <div id="hdr-isim" style="font-size:13px;font-weight:900;color:var(--tx);letter-spacing:-.3px">Öğrenci Profili</div>
           <div id="hdr-uni" style="font-size:10px;font-weight:600;color:var(--tx2);margin-top:1px">Üniversite seçilmedi</div>
         </div>
         <div id="hdr-av" onclick="goProfile()" style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;cursor:pointer;overflow:hidden;border:2.5px solid rgba(255,255,255,.8);box-shadow:0 4px 14px rgba(91,140,255,.28);">
@@ -572,7 +572,7 @@ body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.3
           <span id="avemo">🎓</span>
           <input type="file" id="avinp" accept="image/*" style="display:none" onchange="avDeg(this)">
         </div>
-        <div class="avi"><h2 id="avisim">Tıp Öğrencisi</h2><p id="avuni">Üniversite seçilmedi</p></div>
+        <div class="avi"><h2 id="avisim">Öğrenci Profili</h2><p id="avuni">Üniversite seçilmedi</p></div>
       </div>
       <div class="r2">
         <div class="f"><label>Adın</label><input type="text" id="pisim" placeholder="Ad Soyad" oninput="pGun()"></div>
@@ -1053,7 +1053,7 @@ function pGun(){
   const pisim=document.getElementById('pisim');
   const puni=document.getElementById('puni');
   const psinif=document.getElementById('psinif');
-  const isim=(pisim&&pisim.value)||'Tıp Öğrencisi';
+  const isim=(pisim&&pisim.value)||'Öğrenci Profili';
   const uni=(puni&&puni.value)||'Üniversite seçilmedi';
   const sinif=(psinif&&psinif.value)||'';
   const avisim=document.getElementById('avisim');
