@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Notus</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#5b8cff">
+<meta name="description" content="Öğrenciler için akıllı not ve akademik takip uygulaması">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
