@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>Not Hesaplayıcı</title>
-<meta name="theme-color" content="#5b8cff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="NotApp">
-<link rel="manifest" href="https://onurbzkn.github.io/Not/manifest.json">
+<title>Not</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -151,6 +146,31 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f0fe 0
 .roz-emoji{font-size:1.8rem;line-height:1;margin-bottom:6px;}
 .roz-isim{font-size:9px;font-weight:800;color:var(--tx2);line-height:1.3;}
 .roz-new{position:absolute;top:-5px;right:-5px;background:linear-gradient(135deg,var(--a1),var(--a2));color:white;font-size:8px;font-weight:800;padding:2px 6px;border-radius:99px;}
+/* GİZLİLİK POLİTİKASI BOTTOM SHEET */
+#gp-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:400;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+#gp-overlay.show{opacity:1;pointer-events:all;}
+#gp-sheet{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:28px 28px 0 0;width:100%;max-width:520px;max-height:88vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.34,1.1,.64,1);box-shadow:0 -8px 40px rgba(0,0,0,.18);}
+body.dark #gp-sheet{background:rgba(22,22,40,.97);border-color:rgba(255,255,255,.12);}
+#gp-overlay.show #gp-sheet{transform:translateY(0);}
+.gp-header{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 14px;flex-shrink:0;}
+.gp-pill{width:36px;height:4px;background:rgba(0,0,0,.12);border-radius:99px;position:absolute;top:14px;left:50%;transform:translateX(-50%);}
+body.dark .gp-pill{background:rgba(255,255,255,.18);}
+.gp-title{font-size:1rem;font-weight:900;color:var(--tx);}
+body.dark .gp-title{color:#f0f0ff;}
+.gp-close{width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.07);color:var(--tx2);font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+body.dark .gp-close{background:rgba(255,255,255,.12);color:rgba(255,255,255,.6);}
+.gp-body{overflow-y:auto;padding:0 20px 32px;-webkit-overflow-scrolling:touch;}
+.gp-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(91,140,255,.1);border:1px solid rgba(91,140,255,.2);border-radius:99px;padding:5px 12px;font-size:10px;font-weight:800;color:var(--a1);margin-bottom:14px;}
+.gp-info{background:rgba(48,201,142,.1);border:1.5px solid rgba(48,201,142,.25);border-radius:14px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;font-size:12px;font-weight:700;color:#1a6b4a;line-height:1.5;}
+body.dark .gp-info{color:#30c98e;}
+.gp-h2{font-size:13px;font-weight:900;color:var(--tx);margin:14px 0 6px;}
+body.dark .gp-h2{color:#f0f0ff;}
+.gp-p{font-size:12px;color:var(--tx2);font-weight:600;line-height:1.7;margin-bottom:6px;}
+body.dark .gp-p{color:rgba(255,255,255,.55);}
+.gp-li{font-size:12px;color:var(--tx2);font-weight:600;line-height:1.7;padding-left:14px;position:relative;}
+.gp-li::before{content:'•';position:absolute;left:0;color:var(--a1);}
+.gp-footer{font-size:11px;color:var(--tx2);font-weight:700;text-align:center;margin-top:18px;padding-top:14px;border-top:1px solid rgba(0,0,0,.06);}
+body.dark .gp-footer{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35);}
 /* BACKUP */
 .bk-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
 .bk-btn{padding:12px;border:none;border-radius:var(--rs);font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;}
@@ -184,6 +204,15 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f0fe 0
 @keyframes shim{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-l{height:13px;margin-bottom:9px;border-radius:7px;}
 .skel-box{height:54px;width:100%;border-radius:var(--rs);margin-bottom:9px;}
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:999;background:linear-gradient(160deg,#e8f0fe 0%,#f0e8fe 50%,#fce8f3 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .5s ease,transform .5s ease;}
+#splash.hide{opacity:0;transform:scale(1.04);pointer-events:none;}
+body.dark #splash{background:linear-gradient(160deg,#0d1117 0%,#10121a 50%,#12101a 100%);}
+.sp-logo{font-size:3.8rem;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;transform:translateY(18px);animation:spIn .6s cubic-bezier(.34,1.4,.64,1) .15s forwards;}
+.sp-sub{font-size:14px;font-weight:700;color:var(--tx2);opacity:0;transform:translateY(12px);animation:spIn .5s cubic-bezier(.34,1.2,.64,1) .4s forwards;}
+.sp-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2));opacity:0;animation:spDot .4s ease .85s forwards;}
+@keyframes spIn{to{opacity:1;transform:translateY(0)}}
+@keyframes spDot{to{opacity:.5}}
 /* KONFETİ */
 #cw{position:fixed;inset:0;pointer-events:none;z-index:500;overflow:hidden;}
 .cf{position:absolute;top:-20px;width:9px;height:9px;border-radius:2px;animation:cfF linear both;}
@@ -209,11 +238,11 @@ body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#e8f0fe 0
 .shbtn.no{background:rgba(0,0,0,.05);color:var(--tx);}
 /* TAB BAR */
 .tbar{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;justify-content:center;padding:0 12px;padding-bottom:max(14px,env(safe-area-inset-bottom));}
-.tbi{display:flex;background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.92);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border-radius:99px;padding:5px;gap:3px;box-shadow:0 8px 28px rgba(0,0,0,.11);width:100%;max-width:520px;}
-.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 5px;border:none;background:transparent;border-radius:90px;cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);color:var(--tx2);}
-.tb.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:white;box-shadow:0 4px 14px rgba(91,140,255,.32);transform:scale(1.06);}
-.tbi2{font-size:17px;line-height:1;}
-.tbl{font-size:8px;font-weight:800;white-space:nowrap;}
+.tbi{display:flex;background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.92);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);border-radius:99px;padding:6px;gap:3px;box-shadow:0 8px 28px rgba(0,0,0,.11);width:100%;max-width:520px;}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 4px;border:none;background:transparent;border-radius:90px;cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1);color:var(--tx2);min-width:0;}
+.tb.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:white;box-shadow:0 4px 14px rgba(91,140,255,.32);}
+.tbi2{font-size:20px;line-height:1;}
+.tbl{font-size:8px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 /* PANEL */
 .panel{display:none;}
 .panel.on{display:block;animation:pI .28s cubic-bezier(.34,1.2,.64,1) both;}
@@ -258,6 +287,13 @@ body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.3
 </head>
 <body>
 
+<!-- SPLASH -->
+<div id="splash">
+  <div class="sp-logo">Notus</div>
+  <div class="sp-sub">Öğrenciler için Not</div>
+  <div class="sp-dot"></div>
+</div>
+
 <!-- KONFETİ -->
 <div id="cw"></div>
 
@@ -272,13 +308,53 @@ body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.3
   </div>
 </div>
 
+<!-- GİZLİLİK POLİTİKASI BOTTOM SHEET -->
+<div id="gp-overlay" onclick="if(event.target===this)gpKapat()">
+  <div id="gp-sheet">
+    <div style="position:relative;">
+      <div class="gp-pill"></div>
+    </div>
+    <div class="gp-header">
+      <div class="gp-title">🔒 Gizlilik Politikası</div>
+      <button class="gp-close" onclick="gpKapat()">✕</button>
+    </div>
+    <div class="gp-body">
+      <div class="gp-chip">📅 Son güncelleme: Mart 2026</div>
+      <div class="gp-info">
+        <span style="font-size:1.2rem;flex-shrink:0">📱</span>
+        <span>Tüm verileriniz yalnızca kendi cihazınızda saklanır. Hiçbir veri sunucularımıza veya üçüncü taraflara aktarılmaz.</span>
+      </div>
+      <div class="gp-p">Bu gizlilik politikası, <b>Notus</b> uygulamasının kullanıcı verilerini nasıl topladığını, kullandığını ve koruduğunu açıklamaktadır.</div>
+      <div class="gp-h2">1. Toplanan Veriler</div>
+      <div class="gp-p">Notus, aşağıdaki verileri yalnızca cihazınızda yerel olarak saklar:</div>
+      <div class="gp-li">Kullanıcı adı ve üniversite bilgisi</div>
+      <div class="gp-li">Not ve sınav verileri (komite notları, final puanları vb.)</div>
+      <div class="gp-li">Pomodoro çalışma geçmişi ve süre bilgileri</div>
+      <div class="gp-li" style="margin-bottom:8px">Profil fotoğrafı</div>
+      <div class="gp-h2">2. Verilerin Kullanımı</div>
+      <div class="gp-p">Toplanan veriler yalnızca not hesaplama, akademik takip, Pomodoro oturumları ve uygulama içi kişiselleştirme amaçlarıyla kullanılır.</div>
+      <div class="gp-h2">3. Veri Paylaşımı</div>
+      <div class="gp-p">Notus, kullanıcı verilerini hiçbir üçüncü tarafla paylaşmaz, satmaz veya kiralamaz.</div>
+      <div class="gp-h2">4. Veri Güvenliği</div>
+      <div class="gp-p">Tüm veriler cihazınızın yerel depolama alanında tutulmaktadır. Uygulama internet üzerinden herhangi bir veri göndermemektedir.</div>
+      <div class="gp-h2">5. Veri Silme</div>
+      <div class="gp-p">Uygulamayı kaldırdığınızda tüm veriler silinir. Ayarlar bölümünden manuel olarak da sıfırlayabilirsiniz.</div>
+      <div class="gp-h2">6. Çocukların Gizliliği</div>
+      <div class="gp-p">Notus, 13 yaşın altındaki çocuklara yönelik değildir.</div>
+      <div class="gp-h2">7. Politika Değişiklikleri</div>
+      <div class="gp-p">Değişiklikler bu sayfada yayınlanacaktır. Uygulamayı kullanmaya devam etmeniz güncellenmiş politikayı kabul ettiğiniz anlamına gelir.</div>
+      <div class="gp-footer">© 2026 Notus · Tüm hakları saklıdır<br><span style="color:var(--a1);font-weight:800">onurbozkan@example.com</span></div>
+    </div>
+  </div>
+</div>
+
 <!-- PRATIK MODAL -->
 
 <div class="w">
   <!-- HEADER -->
   <div class="hdr">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <h1 style="font-size:2.4rem"><span>Not</span></h1>
+      <h1 style="font-size:2.4rem"><span>Notus</span></h1>
       <div style="display:flex;align-items:center;gap:10px">
         <div style="text-align:right">
           <div id="hdr-isim" style="font-size:13px;font-weight:900;color:var(--tx);letter-spacing:-.3px">Tıp Öğrencisi</div>
@@ -545,6 +621,10 @@ body.dark .btnd{background:rgba(255,255,255,.06);border-color:rgba(91,140,255,.3
         <div class="sil"><div class="sic" style="background:linear-gradient(135deg,#ff6b6b,#ee0979)">🗑️</div><div class="sit"><div class="ti">Verileri Sıfırla</div><div class="su">Tüm veriler silinir</div></div></div>
         <span class="sarr" style="color:var(--red)">›</span>
       </div>
+      <div class="sitem" onclick="gpAc()">
+        <div class="sil"><div class="sic" style="background:linear-gradient(135deg,#5b8cff,#b06aff)">🔒</div><div class="sit"><div class="ti">Gizlilik Politikası</div><div class="su">Verileriniz nasıl korunuyor?</div></div></div>
+        <span class="sarr">›</span>
+      </div>
       <div class="sitem" style="cursor:default">
         <div class="sil"><div class="sic" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">ℹ️</div><div class="sit"><div class="ti">NotHesap</div><div class="su">v2.0 — Tıp öğrencileri için</div></div></div>
         <span class="sval">v2.0</span>
@@ -574,6 +654,11 @@ const MVk=['😮 Dikkat et!','📖 Daha çok çalışman gerek','💪 Pes etme!'
 // ====== INIT ======
 window.onload=()=>{
   try{
+    // Splash kapat
+    setTimeout(()=>{
+      const sp=document.getElementById('splash');
+      if(sp){sp.classList.add('hide');setTimeout(()=>sp.remove(),520);}
+    },1400);
     const sv=localStorage.getItem('pratikVar');
     if(sv!==null){
       pratikVar=sv==='true';
@@ -953,6 +1038,8 @@ function importData(input){
 }
 
 // ====== AYARLAR ======
+function gpAc(){document.getElementById('gp-overlay').classList.add('show');document.body.style.overflow='hidden';}
+function gpKapat(){document.getElementById('gp-overlay').classList.remove('show');document.body.style.overflow='';}
 function tDark(){document.body.classList.toggle('dark',document.getElementById('darkt').checked);if(gnoCh)renderGC();saveS();}
 function toggleCol(){const p=document.getElementById('copts');p.style.display=p.style.display==='none'?'flex':'none';}
 function rSec(isim,el,c1,c2){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');document.documentElement.style.setProperty('--a1',c1);document.documentElement.style.setProperty('--a2',c2);const rsub=document.getElementById('rsub');if(rsub)rsub.textContent=isim;localStorage.setItem('renk',JSON.stringify({isim,c1,c2}));}
@@ -1064,15 +1151,6 @@ function loadAll(){
     if(roz)kazanilanRozetler=JSON.parse(roz);
     renderDersler();renderDonemler();renderKomiteler();renderS();renderStaj();renderRozetler();
   }catch(e){console.warn('loadAll hatası:',e);}
-}
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => console.log('SW kayıtlı:', reg.scope))
-      .catch(err => console.warn('SW hatası:', err));
-  });
 }
 </script>
 </body>
